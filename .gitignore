@@ -6,10 +6,8 @@ dist/
 wheels/
 *.egg-info
 
+# environment-related
+.env
+
 # Virtual environments
 .venv
-
-# draft
-test.py
-test2.py
-cache.txt
