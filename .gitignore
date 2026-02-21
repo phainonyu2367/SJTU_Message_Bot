@@ -8,3 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+
+# draft
+test.py
+test2.py
+cache.txt
