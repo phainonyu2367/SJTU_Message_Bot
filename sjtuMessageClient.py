@@ -2,13 +2,12 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import requests
 import lxml
-import datetime
-import pandas
+
 
 BASE_URL = 'https://www.sjtu.edu.cn/'
 URL = 'https://www.sjtu.edu.cn/tg/index.html'
 
-def scrape_message(url: str) -> str:
+def scrape_message(url: str=URL) -> str:
     """Scraping message from the specified source"""
     try:
         response = requests.get(url)
@@ -44,14 +43,18 @@ def arti_soup_maker(time: str, text: str) -> str:
     print(time)
     soup = BeautifulSoup(text, 'lxml')
     try:
-        content = soup.body.div.find_all('div')[1].find_all('section')[1].div.div.div.find('div', class_='Article_content').find_all('p')
-        article = [text.string for text in content]
+        content = soup.body.div.find_all('div')[1].find_all('section')[1].div.div.div.find('div', class_='Article_content').text
     except Exception as e:
         print(f"error occured when proccesing the article's html-text, error {e}")
     else:
         print('successful text processing')
         print('------------------------------')
-        try:
-            return ' '.join(article)
-        except TypeError:
-            print('No text in this tg, you might want to check the tg at web-page')
+        # try:
+        #     return content
+        # except TypeError:
+        #     print('No text in this tg, you might want to check the tg at web-page')
+        return content
+
+
+
+# TODO: update scrape_message() and arti_soup_maker()(probably write a new func) to handle the pictures

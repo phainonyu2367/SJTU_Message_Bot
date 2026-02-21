@@ -1,5 +1,6 @@
 from sjtuMessageClient import *
 from urllib.parse import urljoin
+from AI_Client import AIclient
 import pandas
 
 def main():
